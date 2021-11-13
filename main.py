@@ -1,7 +1,7 @@
 import os
 import time
 
-function phpInstall():
+def php():
     print("***********[-] Removing current version and updating to newer version***********")
     os.system("sudo apt-get purge php7.*")
     os.system("sudo apt-get autoclean")
@@ -12,7 +12,7 @@ function phpInstall():
     print("***********[x] Done***********")
 
 
-function composerInstall():
+def composer():
     print("***********[x] installing composer***********")
     os.system(''' php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"''')
     os.system(' php composer-setup.php')
@@ -29,14 +29,24 @@ function composerInstall():
 
 
 
-function run():
+def run():
     print("***********[x] Checking php version***********")
     os.system("php -v | head -n 1")
     q1 = input("Update [yes|no]?")
     
     if(q1 == 'yes'):
-        phpInstall()
+        php()
         time.sleep(2)
+        composer()
+        
+    else:
+        composer()
+        
+
+
+if __name__ == "__main__":
+    run()
+        
       
        
         
